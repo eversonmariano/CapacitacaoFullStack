@@ -19,7 +19,14 @@ public class SysCapacityApp {
     //Método ServidorPublico
 //• (6) calcularFolhaServidoresPublicos()
 
-    //CREATE
+    //MÉTODOS CURSOS
+//  (1) adicionarCurso()
+//• (2) listarCursos()
+//• (3) listarCurso(int cdCurso)
+//• (4) alterarCurso(Curso curso)
+//• (5) excluirServidorPublico(int cdCurso)
+
+    //CREATE SERVIDOR
     public void adicionarServidorPublico() {
         int matricula = Integer.parseInt(JOptionPane.showInputDialog("Digite a matrícula"));
         String nome = JOptionPane.showInputDialog("Digite a nome");
@@ -32,13 +39,35 @@ public class SysCapacityApp {
         ServidorPublico servidor = new ServidorPublico(matricula, nome, orgao, cargo, lotacao, email, salario);
         servidores.add(servidor);
     }
-    //READ
+
+    //CREATE CURSO
+    public void adicionarCurso(){
+        int idcurso = Integer.parseInt(JOptionPane.showInputDialog("Digite o id do curso: "));
+        String nome = JOptionPane.showInputDialog("Digite o nome do curso: ");
+        String formaRealizacao = JOptionPane.showInputDialog("Digite a forma de realização do curso:");
+        String ofertante = JOptionPane.showInputDialog("Qual escola dará o curso");
+        double valor = Double.parseDouble(JOptionPane.showInputDialog("Digite o valor do curso: "));
+        Curso curso = new Curso(idcurso, nome, formaRealizacao, ofertante, valor);
+        cursos.add(curso);
+
+    }
+
+
+    //READ SERVIDORES PUBLICOS
     public void listarServidoresPublicos() {
         for (ServidorPublico servidor : servidores){
             System.out.println(servidor);
         }
     }
 
+    //READ CURSOS
+    public void listarCursos() {
+        for (Curso curso : cursos) {
+            System.out.println(curso);
+        }
+    }
+
+    //Busca de Servidor Publico por matrícula
     public void listarServidorPorMatricula(int matricula) {
         boolean encontrou = false;
 
@@ -55,8 +84,43 @@ public class SysCapacityApp {
         }
     }
 
+    //Busca de Curso por id
+    public void listarCursoPorID(int idCurso) {
+        boolean encontrou = false;
+        for (Curso curso : cursos) {
+            if (curso.getIdcurso() == idCurso){
+                encontrou = true;
+                System.out.println(curso);
+                break;
+            }
+        }
+        if (!encontrou){
+            System.out.println("O curso não foi encontrado!");
+        }
+    }
 
-    //UPDATE
+    //UPDATE de Cursos por id
+    public void alterarCurso(Curso cursoAlterado) {
+        boolean encontrou = false;
+
+        for (Curso curso : cursos){
+            if (curso.getIdcurso() == cursoAlterado.getIdcurso()){
+                encontrou = true;
+                cursos.remove(curso);
+                cursos.add(cursoAlterado);
+                break;
+            }
+        }
+        if(!encontrou){
+            System.out.println("Id inexistente!");
+        }
+        else{
+            System.out.println("A Alteração do Curso de Id "+ cursoAlterado.getIdcurso() + " foi alterado com sucesso!");
+        }
+    }
+
+
+    //UPDATE de Servidor por Matrícula
     public void alterarServidorPublico(ServidorPublico servidorAlterado) {
         boolean encontrou = false;
 
@@ -76,7 +140,7 @@ public class SysCapacityApp {
         }
     }
 
-    //DELETE
+    //DELETE Servidor Publico por Matrícula
     public void excluirServidorPublico(int matricula) {
         boolean encontrou = false;
 
@@ -91,9 +155,28 @@ public class SysCapacityApp {
             System.out.println("O servidor com a matrícula informada não existe!");
         }
         else{
-            System.out.println("O Servidor Publico de matrícula "+ matricula + " foi alterado com sucesso!");
+            System.out.println("O Servidor Publico de matrícula "+ matricula + " foi excluído com sucesso!");
         }
 
+    }
+
+    //DELETE Curso por Id
+    public void deletarCurso(Curso curso) {
+        boolean encontrou = false;
+
+        for (Curso curso1 : cursos){
+            if (curso.getIdcurso() == curso.getIdcurso()){
+                encontrou = true;
+                cursos.remove(curso1);
+                break;
+            }
+        }
+        if(!encontrou){
+            System.out.println("Id inexistente!");
+        }
+        else{
+            System.out.println("O Curso de Id "+ curso.getIdcurso() + " foi excluído com sucesso!");
+        }
     }
 
     //Método ServidorPublico
@@ -109,21 +192,34 @@ public class SysCapacityApp {
     public static void main(String[] args) {
 
         SysCapacityApp sistema = new SysCapacityApp();
-        sistema.adicionarServidorPublico();
-        sistema.adicionarServidorPublico();
-        System.out.println("adicionado 2 servidores");
-        sistema.listarServidoresPublicos();
-       // sistema.listarServidorPorMatricula(12);
-      //  sistema.listarServidorPorMatricula(13);
-        ServidorPublico servidorAlterado = new ServidorPublico(1, "ell","if",
-                "estudante", "cg", "japa@", 100.00 );
-        sistema.alterarServidorPublico(servidorAlterado);
+//        sistema.adicionarServidorPublico();
+//        sistema.adicionarServidorPublico();
+//        System.out.println("adicionado 2 servidores");
+//        sistema.listarServidoresPublicos();
+//       //sistema.listarServidorPorMatricula(1);
+//      //sistema.listarServidorPorMatricula(3);
+//        ServidorPublico servidorAlterado = new ServidorPublico(1, "ell","if",
+//                "estudante", "cg", "japa@", 100.00 );
+//        sistema.alterarServidorPublico(servidorAlterado);
+//      //sistema.excluirServidorPublico(1);
+//        System.out.println("listar servidores");
+//        sistema.listarServidoresPublicos();
+//        sistema.calcularFolhaSalarial();
 
-      //  sistema.excluirServidorPublico(1);
-        System.out.println("listar servidores");
-        sistema.listarServidoresPublicos();
+        sistema.adicionarCurso();
+        sistema.adicionarCurso();
+        System.out.println("adicionado 2 Cursos");
+        sistema.listarCursos();
+        System.out.println("Lista de curso por ID");
+        sistema.listarCursoPorID(1);
+      //sistema.listarServidorPorMatricula(3);
 
-        sistema.calcularFolhaSalarial();
+        Curso curso = new Curso(1, "História", "EAD", "UniFacisa", 300.00);
+        System.out.println("Curso Alterado:");
+        sistema.alterarCurso(curso);
+        sistema.listarCursos();
+      //sistema.excluirServidorPublico(1);
+
 
 
 

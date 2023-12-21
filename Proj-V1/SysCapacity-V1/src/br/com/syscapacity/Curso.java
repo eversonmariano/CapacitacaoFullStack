@@ -5,7 +5,6 @@ public class Curso {
     private int idcurso;
     private String nome;
     private String formaRealizacao;
-
     private String ofertante;
     private double valor;
 
