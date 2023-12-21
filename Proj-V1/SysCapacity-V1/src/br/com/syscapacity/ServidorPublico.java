@@ -2,30 +2,33 @@ package br.com.syscapacity;
 
 public class ServidorPublico {
 
-    private String matricula;
+    private int matricula;
     private String nome;
     private String orgao;
     private String cargo;
     private String lotacao;
+
+    private String email;
     private double salario;
 
     public ServidorPublico() {
     }
 
-    public ServidorPublico(String matricula, String nome, String orgao, String cargo, String lotacao, double salario) {
+    public ServidorPublico(int matricula, String nome, String orgao, String cargo, String lotacao, String email, double salario) {
         this.matricula = matricula;
         this.nome = nome;
         this.orgao = orgao;
         this.cargo = cargo;
         this.lotacao = lotacao;
+        this.email = email;
         this.salario = salario;
     }
 
-    public String getMatricula() {
+    public int getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(String matricula) {
+    public void setMatricula(int matricula) {
         this.matricula = matricula;
     }
 
@@ -61,6 +64,14 @@ public class ServidorPublico {
         this.lotacao = lotacao;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public double getSalario() {
         return salario;
     }
@@ -77,7 +88,10 @@ public class ServidorPublico {
                 ", orgao='" + orgao + '\'' +
                 ", cargo='" + cargo + '\'' +
                 ", lotacao='" + lotacao + '\'' +
+                ", email='" + email + '\'' +
                 ", salario=" + salario +
                 '}';
     }
+
+
 }
